@@ -45,6 +45,13 @@ class Recipes extends React.Component {
 						difficulty={this.props.difficulty}
 						key={Math.random()}
 					/>
+					{this.props.info.dietLabels.map((dietLabel, index) => (
+						<DietLabel
+							className="dietLabel"
+							key={Math.random()}
+							dietText={dietLabel}
+						/>
+					))}
 				</div>
 			</div>
 		)
