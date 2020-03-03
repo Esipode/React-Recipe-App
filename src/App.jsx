@@ -50,7 +50,8 @@ class App extends React.Component {
 	render() {
 		return (
 		  <div className="App">
-				<Search getRecipeCallback={this.getRecipes} isLoading={this.state.displayLoading} />
+				<h2 className="noRecipes" style={this.state.noRecipes ? {display: 'block'} : {display: 'none'}}>Could not find any recipes!</h2>
+				<Search getRecipeCallback={this.getRecipes} isLoading={this.state.displayLoading}/>
 		  </div>
 		)
 	}
