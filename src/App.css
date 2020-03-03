@@ -250,3 +250,89 @@ body {
 .ingredientList::-webkit-scrollbar { 
 	display: none;
 }
+
+.labelList {
+	--bgColor: #ffb15b;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	align-items: center;
+	overflow: hidden;
+	bottom: 0;
+	z-index: 1;
+	width: 290px;
+	position: absolute;
+	height: 0;
+	border-radius: 0 0 24px 24px;
+	padding: 0 5px;
+	transition: all 0.25s linear;
+}
+
+.labelList .diffSimple {
+	--bdrColor: #56a1fd;
+}
+
+.labelList .diffBasic {
+	--bdrColor: #49ca53;
+}
+
+.labelList .diffModerate {
+	--bdrColor: #fdb15b;
+}
+
+.labelList .diffAdvanced {
+	--bdrColor: #fd5b5b;
+}
+
+.labelList .diffExpert {
+	--bdrColor: #b45bfd;
+}
+
+.labelList [class*='diff'] {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	height: 20px;
+	width: 20px;
+	opacity: 0;
+	border-radius: 13px;
+	border: 3px solid var(--bdrColor);
+}
+
+.labelList [class*='diff'] i {
+	width: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 13px;
+    border-radius: 13px;
+    text-align: center;
+}
+
+.labelList [class*='diff'] p {
+	background: var(--bdrColor);
+	position: absolute;
+	top: -33px;
+	padding: 1px 6px;
+	font-size: 11px;
+	border-radius: 10px;
+	opacity: 0;
+	white-space: nowrap;
+	transition: all 0.25s linear;
+}
+
+.labelList [class*='diff'] p:after {
+	content: '';
+	width: 0;
+	height: 0;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-top: 6px solid var(--bdrColor);
+	position: absolute;
+	right: calc(50% - 6px);
+	top: 14px;
+}
+
+.labelList [class*='diff']:hover p {
+	opacity: 1;
+}
