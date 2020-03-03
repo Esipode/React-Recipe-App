@@ -57,9 +57,28 @@ class Search extends React.Component {
 		return (
 			<div className={this.state.hideHeader ? "header hideHeader" : "header"}>
 				<form className="searchContainer">
-					<img src="./logo.svg" alt="logo" draggable="false"/>
-					<input className="searchBar" placeholder={this.props.isLoading ? "Searching..."  : "Search recipes here..."}  type="text" value={this.state.search} onChange={this.searchUpdate} style={this.props.isLoading ? {opacity: '0.4'} : {opacity: ''}}/>
-					<button className="searchBtn" onClick={this.startSearch}><i className="fas fa-search" style={this.props.isLoading ? {animation: 'loading 1s infinite linear'} : {animation: ''}} ></i></button>
+					<img
+						src="./logo.svg"
+						alt="logo"
+						draggable="false"
+					/>
+					<input 
+						className="searchBar"
+						placeholder={this.props.isLoading ? "Searching..."  : "Search recipes here..."}
+						type="text"
+						value={this.state.search}
+						onChange={this.searchUpdate}
+						style={this.props.isLoading ? {opacity: '0.4'} : {opacity: ''}}
+					/>
+					<button 
+						className="searchBtn"
+						onClick={this.startSearch}
+					>
+						<i
+							className="fas fa-search"
+							style={this.props.isLoading ? {animation: 'loading 1s infinite linear'} : {animation: ''}}
+						/>
+					</button>
 				</form>
 			</div>
 		)

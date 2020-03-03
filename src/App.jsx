@@ -59,19 +59,22 @@ class App extends React.Component {
 	render() {
 		return (
 		  <div className="App">
-				<h2 className="noRecipes" style={this.state.noRecipes ? {display: 'block'} : {display: 'none'}}>Could not find any recipes!</h2>
-				<Search getRecipeCallback={this.getRecipes} isLoading={this.state.displayLoading}/>
-				<div className="recipeContainer">
-					{this.state.curRecipes.map((recipe, index) => (
-						<Recipes 
-							animationOrder={index}
-							info={recipe.recipe}
-							key={recipe.recipe.label + ' ' + this.generateKey()}
-							isLoading={this.state.displayLoading}
-							difficulty={recipe.recipe.ingredients.length}
-						/>
-					))}
-				</div>
+			<h2 className="noRecipes" style={this.state.noRecipes ? {display: 'block'} : {display: 'none'}}>Could not find any recipes!</h2>
+			<Search
+				getRecipeCallback={this.getRecipes}
+				isLoading={this.state.displayLoading}
+			/>
+			<div className="recipeContainer">
+				{this.state.curRecipes.map((recipe, index) => (
+					<Recipes 
+						animationOrder={index}
+						info={recipe.recipe}
+						key={recipe.recipe.label + ' ' + this.generateKey()}
+						isLoading={this.state.displayLoading}
+						difficulty={recipe.recipe.ingredients.length}
+					/>
+				))}
+			</div>
 		  </div>
 		)
 	}
