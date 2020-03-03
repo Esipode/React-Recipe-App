@@ -26,6 +26,16 @@ class Recipes extends React.Component {
 						<p className="peopleCount"><i className="fas fa-users"></i>{this.props.info.yield}</p>
 					</div>
 				</div>
+				<ul className={`ingredientList ${this.state.expandedRecipe ? "expanded" : ""}`}>
+					{this.props.info.ingredients.map((ingredient, index) => (
+						<Ingredient
+							className="ingredient"
+							key={Math.random()}
+							animationOrderIngr={index}
+							text={ingredient.text}
+						/>
+					))}
+				</ul>
 			</div>
 		)
 	}
