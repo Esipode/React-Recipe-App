@@ -14,7 +14,7 @@ class Recipes extends React.Component {
 	render() {
 		return (
 			<div className={this.state.appClass} style={{animation: `fadeIn 0.75s ease-in-out calc(${this.props.animationOrder} * 200ms)`, animationFillMode: "both"}}>
-				<i className="arrow fas fa-info-circle" onClick={this.growRecipe}/>
+				<i className="info fas fa-info-circle" onClick={this.growRecipe}/>
 				<div className="recipe">
 					<h1 className="recipeName">{this.props.info.label}</h1>
 					<div className="card">
