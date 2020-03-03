@@ -12,6 +12,43 @@ class Recipes extends React.Component {
 			expandedRecipe: false
 		}
 	}
+	convertTime(totalTime) {
+		if (this.props.info.totalTime > 60) {
+			let totalMinutes = this.props.info.totalTime;
+			let hours = Math.floor(totalMinutes / 60);
+			let minutes = totalMinutes % 60;
+			let hoursText = (hours > 1 ? 'Hrs' : 'Hr');
+			totalTime = hours + ' ' + hoursText + (minutes > 0 ? ' ' + minutes + ' Min' : '');
+		}
+		else if (this.props.info.totalTime > 0 && this.props.info.totalTime < 1) {
+			totalTime = (this.props.info.totalTime * 60) + ' Sec';
+		}
+		else {
+			totalTime = this.props.info.totalTime + ' Min';
+		}
+		return totalTime;
+	}
+	convertPeople(peopleText) {
+		if (this.props.info.yield < 2) {
+			peopleText = 'Person'
+		}
+		else {
+			peopleText = 'People';
+		}
+		return peopleText;
+	}
+	textResize(fontSize) {
+		if (this.props.info.label.length > 50) {
+			fontSize = '12px';
+		}
+		else if (this.props.info.label.length > 27) {
+			fontSize = '14px';
+		}
+		else {
+			fontSize = '16px';
+		}
+		return fontSize;
+	}
 	growRecipe = () => {
 		this.state.expandedRecipe ? this.setState({expandedRecipe: false}) : this.setState({expandedRecipe: true})
 	}
