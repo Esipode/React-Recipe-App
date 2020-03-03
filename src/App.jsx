@@ -13,19 +13,25 @@ class App extends React.Component {
 			prevSearch: ''
 		}
 	}
+	//Pull recipes from API
 	getRecipes = async (searchValue) => {
+		//If search result is same as previous, do nothing
 		if (searchValue === this.state.prevSearch) {
 			return
 		}
 		else {
 			try {
+				//Start loading animation in search bar
 				this.setState({
 					displayLoading: true
 				})
+				//Get API Key
 				const appID = process.env.REACT_APP_RECIPE_API_ID;
 				const appKey = process.env.REACT_APP_RECIPE_API_KEY;
+				//Search for recipes
 				const response = await fetch(`https://api.edamam.com/search?q=${searchValue}&app_id=${appID}&app_key=${appKey}`);
 				const data = await response.json();
+				//If no recipes are returned, display message
 				if (data.count < 1) {
 					this.setState({
 						noRecipes: true
@@ -36,19 +42,23 @@ class App extends React.Component {
 						})
 					}, 2000);
 				}
+				//Store search results in state
 				this.setState({
 					curRecipes: data.hits,
 					prevSearch: searchValue
 				})
 			}
+			//Alert if API throws error while fetching
 			catch(err) {
 				alert(err);
 			}
+			//Stop loading animation in search bar
 			this.setState({
 				displayLoading: false
 			})
 		}
 	}
+	//Create unique IDs
 	generateKey() {
 		let result = '';
 		var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';

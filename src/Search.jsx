@@ -15,6 +15,7 @@ class Search extends React.Component {
 	componentWillUnmount() {
 		window.removeEventListener('scroll', this.handleScroll)
 	}
+	//Toggles visibility of search bar based on scroll direction
 	handleScroll = () => {
 		let headerHider = this.pagePosition < window.pageYOffset  || window.pageYOffset < 1 ? this.setState({hideHeader: true}) : this.setState({hideHeader: false});
 		this.pagePosition = window.pageYOffset;
@@ -25,11 +26,14 @@ class Search extends React.Component {
 		}
 		return headerHider;
 	}
+	//Begins recipe search 
 	startSearch = (e) => {
 		e.preventDefault();
+		//Cancels search for empty strings
 		if (this.state.search === '' || this.props.isLoading) {
 			return
 		}
+		//Starts API Call and clears current search input
 		else {
 			this.props.getRecipeCallback(this.state.search);
 			return this.setState({
@@ -38,10 +42,13 @@ class Search extends React.Component {
 		}
 		
 	}
+	//Checks characters on key strokes for non-alphanumeric characters
 	searchUpdate = (e) => {
+		//Prevents typing during loading
 		if (this.props.isLoading) {
 			return
 		}
+		//Regex for illegal characters
 		else {
 			let srcVal = e.target.value;
 			const regExp = /[^\w\s-]/g;

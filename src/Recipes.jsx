@@ -12,6 +12,7 @@ class Recipes extends React.Component {
 			expandedRecipe: false
 		}
 	}
+	//Convert time values into Hours and minutes
 	convertTime(totalTime) {
 		if (this.props.info.totalTime > 60) {
 			let totalMinutes = this.props.info.totalTime;
@@ -28,6 +29,7 @@ class Recipes extends React.Component {
 		}
 		return totalTime;
 	}
+	//Grammar correction for plurals of singular numbers of people
 	convertPeople(peopleText) {
 		if (this.props.info.yield < 2) {
 			peopleText = 'Person'
@@ -37,6 +39,7 @@ class Recipes extends React.Component {
 		}
 		return peopleText;
 	}
+	//Shrink text when titles are too long
 	textResize(fontSize) {
 		if (this.props.info.label.length > 50) {
 			fontSize = '12px';
@@ -49,6 +52,7 @@ class Recipes extends React.Component {
 		}
 		return fontSize;
 	}
+	//Toggles expansion of recipe information on click
 	growRecipe = () => {
 		this.state.expandedRecipe ? this.setState({expandedRecipe: false}) : this.setState({expandedRecipe: true})
 	}
@@ -57,14 +61,14 @@ class Recipes extends React.Component {
 			<div className={this.state.appClass} style={{animation: `fadeIn 0.75s ease-in-out calc(${this.props.animationOrder} * 200ms)`, animationFillMode: "both"}}>
 				<i className="info fas fa-info-circle" onClick={this.growRecipe}/>
 				<div className="recipe">
-					<h1 className="recipeName">{this.props.info.label}</h1>
+					<h1 className="recipeName" style={{fontSize: this.textResize()}}>{this.props.info.label}</h1>
 					<div className="card">
 						<img className="recipeImg" src={this.props.info.image} alt={this.props.info.label} draggable="false"/>
 					</div>
 					<div className={`infoContainer ${this.state.expandedRecipe ? "expanded" : ""}`}>
-						<p className="timeCount" style={{display: this.props.info.totalTime > 0 ? 'block' : 'none'}}><i className="fas fa-clock"></i></p>
+						<p className="timeCount" style={{display: this.props.info.totalTime > 0 ? 'block' : 'none'}}><i className="fas fa-clock"></i>{this.convertTime()}</p>
 						<p className="calorieCount"><i className="fas fa-leaf"></i>{(this.props.info.calories / this.props.info.yield).toFixed(0)} Calories</p>
-						<p className="peopleCount"><i className="fas fa-users"></i>{this.props.info.yield}</p>
+						<p className="peopleCount"><i className="fas fa-users"></i>{this.props.info.yield} {this.convertPeople()}</p>
 					</div>
 				</div>
 				<ul className={`ingredientList ${this.state.expandedRecipe ? "expanded" : ""}`}>

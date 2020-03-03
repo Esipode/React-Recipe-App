@@ -1,6 +1,7 @@
 import React from 'react';
 
 class Difficulty extends React.Component {
+	//Sets a recipe's difficulty value based on number of ingredients
 	calcDifficulty = (difficulty) => {
 		switch (true) {
 			case this.props.difficulty <= 2:
