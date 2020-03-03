@@ -1,4 +1,6 @@
 import React from 'react';
+import Search from './Search';
+import Recipes from './Recipes';
 import './App.css'
 
 class App extends React.Component {

@@ -1,4 +1,8 @@
 import React from 'react';
+import Ingredient from './Ingredient';
+import Difficulty from './Difficulty';
+import DietLabel from './DietLabel';
+import HealthLabel from './HealthLabel';
 
 class Recipes extends React.Component {
 	constructor(props) {
@@ -36,6 +40,12 @@ class Recipes extends React.Component {
 						/>
 					))}
 				</ul>
+				<div className={`labelList ${this.state.expandedRecipe ? "expanded" : ""}`}>
+					<Difficulty 
+						difficulty={this.props.difficulty}
+						key={Math.random()}
+					/>
+				</div>
 			</div>
 		)
 	}
