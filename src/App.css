@@ -217,3 +217,36 @@ body {
 .infoContainer.expanded p {
 	opacity: 0;
 }
+
+.ingredientList {
+	position: absolute;
+	background: rgba(255, 255, 255, 0.85);
+	height: 0px;
+	width: 255px;
+	margin: 32px 0 0 0;
+	padding: 0 15px 0px 30px;
+	font-size: 12px;
+	border-radius: 24px 24px 0 0;
+	overflow-y: auto;
+	transition: all 0.25s linear;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+
+.ingredient {
+	opacity: 0;
+	padding-top: 4px;
+}
+
+.ingredient:last-child {
+	padding-bottom: 15px;
+}
+
+.ingredientList.expanded {
+	height: 285px;
+	padding: 15px 15px 0px 30px;
+}
+
+.ingredientList::-webkit-scrollbar { 
+	display: none;
+}
