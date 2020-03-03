@@ -9,19 +9,6 @@ class Search extends React.Component {
 		}
 		this.pagePosition = 0;
 	}
-	startSearch = (e) => {
-		e.preventDefault();
-		if (this.state.search === '' || this.props.isLoading) {
-			return
-		}
-		else {
-			this.props.getRecipeCallback(this.state.search);
-			return this.setState({
-				search: ''
-			})
-		}
-		
-	}
 	componentDidMount() {
 		window.addEventListener('scroll', this.handleScroll);
 	}
@@ -37,6 +24,19 @@ class Search extends React.Component {
 			})
 		}
 		return headerHider;
+	}
+	startSearch = (e) => {
+		e.preventDefault();
+		if (this.state.search === '' || this.props.isLoading) {
+			return
+		}
+		else {
+			this.props.getRecipeCallback(this.state.search);
+			return this.setState({
+				search: ''
+			})
+		}
+		
 	}
 	searchUpdate = (e) => {
 		if (this.props.isLoading) {
