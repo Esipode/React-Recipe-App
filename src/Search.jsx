@@ -22,6 +22,22 @@ class Search extends React.Component {
 		}
 		
 	}
+	componentDidMount() {
+		window.addEventListener('scroll', this.handleScroll);
+	}
+	componentWillUnmount() {
+		window.removeEventListener('scroll', this.handleScroll)
+	}
+	handleScroll = () => {
+		let headerHider = this.pagePosition < window.pageYOffset  || window.pageYOffset < 1 ? this.setState({hideHeader: true}) : this.setState({hideHeader: false});
+		this.pagePosition = window.pageYOffset;
+		if (!window.pageYOffset >= 1) {
+			this.setState({
+				hideHeader: false
+			})
+		}
+		return headerHider;
+	}
 	searchUpdate = (e) => {
 		if (this.props.isLoading) {
 			return
