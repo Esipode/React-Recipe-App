@@ -155,8 +155,9 @@ body {
 }
 
 .recipeWrapper {
+	position: relative;
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	flex-wrap: wrap;
 	margin: 20px;
 }
@@ -189,9 +190,9 @@ body {
 .info {
 	cursor: pointer;
 	position: relative;
-	z-index: 3;
-	right: -275px;
-	bottom: -25px;
+    z-index: 3;
+    right: 19px;
+    top: -8px;
 	font-size: 22px;
 	height: 32px;
 	width: 32px;
@@ -201,6 +202,7 @@ body {
 	border-radius: 25px;
 	color: rgb(118, 118, 118);
 	box-shadow: 1px 0px 3px 0px rgba(0, 0, 0, 0.36);
+	transition: all 0.1s linear;
 }
 
 .info:hover {
@@ -228,6 +230,7 @@ body {
 	width: 100%;
 	height: 300px;
 	overflow: hidden;
+	background: rgb(236, 236, 236);
 }
 
 .recipeImg {
@@ -262,6 +265,8 @@ body {
 
 .ingredientList {
 	position: absolute;
+	top: -32px;
+    right: 32px;
 	background: rgba(255, 255, 255, 0.85);
 	height: 0px;
 	width: 255px;
@@ -295,20 +300,32 @@ body {
 
 .labelList {
 	--bgColor: #ffb15b;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: space-evenly;
-	align-items: center;
-	overflow: hidden;
-	bottom: 0;
-	z-index: 1;
-	width: 290px;
-	position: absolute;
-	height: 0;
-	border-radius: 0 0 24px 24px;
-	padding: 0 5px;
-	transition: all 0.25s linear;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    z-index: -1;
+    height: 360px;
+    border-radius: 24px 0 0 24px;
+    padding: 10px 25px 10px 5px;
+    transition: all 0.25s linear;
+    background: #ececec;
+	margin-right: -188px;
+	box-shadow: none;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.labelList::-webkit-scrollbar {
+	display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.labelList {
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+}
+
+.labelList div {
+	margin: 5px;
 }
 
 .labelList .diffSimple {
@@ -335,11 +352,8 @@ body {
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
-	height: 20px;
-	width: 20px;
-	opacity: 0;
+	height: 26px;
 	border-radius: 13px;
-	border: 3px solid var(--bdrColor);
 }
 
 .labelList [class*='diff'] i {
@@ -349,30 +363,17 @@ body {
     font-size: 13px;
     border-radius: 13px;
     text-align: center;
+	border: 3px solid var(--bdrColor);
 }
 
 .labelList [class*='diff'] p {
 	background: var(--bdrColor);
-	position: absolute;
-	top: -33px;
 	padding: 1px 6px;
 	font-size: 11px;
-	border-radius: 10px;
-	opacity: 0;
+    margin-left: -3px;
+	border-radius: 0 10px 10px 0;
 	white-space: nowrap;
 	transition: all 0.25s linear;
-}
-
-.labelList [class*='diff'] p:after {
-	content: '';
-	width: 0;
-	height: 0;
-	border-left: 6px solid transparent;
-	border-right: 6px solid transparent;
-	border-top: 6px solid var(--bdrColor);
-	position: absolute;
-	right: calc(50% - 6px);
-	top: 14px;
 }
 
 .labelList [class*='diff']:hover p {
@@ -389,6 +390,11 @@ body {
 
 .labelList [name*='Low'], .labelList [name*='Friendly'] {
 	--bgColor: #49ca53;
+}
+
+.labelList.expanded {
+	margin-right: -20px;
+    box-shadow: 1px 1px 4px rgb(0, 0, 0, 0.3);
 }
 
 .dietLabel, .healthLabel {
@@ -410,40 +416,52 @@ body {
 
 .dietLabel p, .healthLabel p {
 	background: var(--bgColor);
-	position: absolute;
-	top: -30px;
 	padding: 1px 6px;
 	font-size: 11px;
-	border-radius: 10px;
-	opacity: 0;
-	white-space: nowrap;
+	border-radius: 0 10px 10px 0;
+	margin-left: -3px;
+	max-width: 90px;
+    white-space: pre-wrap;
 	transition: all 0.25s linear;
-}
-
-.dietLabel p:after, .healthLabel p:after  {
-	content: '';
-	width: 0;
-	height: 0;
-	border-left: 6px solid transparent;
-	border-right: 6px solid transparent;
-	border-top: 6px solid var(--bgColor);
-	position: absolute;
-	right: calc(50% - 6px);
-	top: 14px;
 }
 
 .dietLabel:hover p, .healthLabel:hover p  {
 	opacity: 1;
 }
 
-.labelList.expanded {
-	height: 35px;
-	overflow: unset;
-}
-
 @media only screen and (max-width: 375px) {
 	.searchBar {
 		width: 110px;
 	}
-	
+}
+
+
+@media only screen and (max-width: 500px) {
+
+	.recipeWrapper {
+		flex-direction: column-reverse;
+	}
+	.labelList {
+		flex-direction: row;
+		flex-wrap: wrap;
+		width: 280px;
+		height: 130px;
+		padding: 30px 10px 10px 10px;
+		border-radius: 0 0 24px 24px;
+		justify-content: space-between;
+		margin-top: -170px;
+	}
+
+	.labelList.expanded {
+		margin-top: -20px;
+	}
+
+	.info {
+		position: absolute;
+		right: -11px;
+	}
+
+	.ingredientList {
+		right: 0px;
+	}
 }

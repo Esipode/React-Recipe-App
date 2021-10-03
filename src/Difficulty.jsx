@@ -23,9 +23,8 @@ class Difficulty extends React.Component {
 		return (
 			<div
 				className={`diff${this.calcDifficulty()}`}
-				style={{animation: `fadeIn 0.25s ease-in-out calc(350ms + (${Math.random()} * 25ms))`, animationFillMode: "both"}}
 			>
-				<i className='fas fa-user'></i><p>Difficulty: {this.calcDifficulty()}</p>
+				<i className='fas fa-user'></i><p>{this.calcDifficulty()}</p>
 			</div>
 		)
 	}

@@ -27,9 +27,8 @@ class DietLabel extends React.Component {
 			<div 
 				className="dietLabel"
 				name={this.props.dietText}
-				style={{animation: `fadeIn 0.25s ease-in-out calc(350ms + (${Math.random()} * 25ms))`, animationFillMode: "both"}}
 			>
-				<i className={this.findIcon()}/><p>{this.props.dietText}</p>
+				<i className={this.findIcon()}/><p>{this.props.dietText.replace(/-/g, ' ')}</p>
 			</div>
 		)
 	}

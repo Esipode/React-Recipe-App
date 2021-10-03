@@ -13,24 +13,29 @@ class HealthLabel extends React.Component {
 			{'Fish-Free': 'fas fa-fish'},
 			{'FODMAP-Free': 'fas fa-bread-slice'},
 			{'Gluten-Free': 'fas fa-bread-slice'},
+			{'Immuno-Supportive': 'fas fa-heart'},
 			{'Keto-Friendly': 'fas fa-bacon'},
 			{'Kidney-Friendly': 'fas fa-heart'},
 			{'Kosher': 'fas fa-hamburger'},
-			{'Low-Potassium': 'fas fa-apple-alt'},
+			{'Low Potassium': 'fas fa-apple-alt'},
+			{'Low Sugar': 'fas fa-apple-alt'},
 			{'Lupine-Free': 'fas fa-seedling'},
+			{'Mediterranean': 'fas fa-hamburger'},
+			{'Mollusk-Free': 'fas fa-fish'},
 			{'Mustard-Free': 'fas fa-pepper-hot'},
 			{'Low-Fat-Abs': 'fas fa-drumstick-bite'},
-			{'No-Oil-Added': 'fas fa-tint'},
+			{'No oil added': 'fas fa-tint'},
 			{'Low-Sugar': 'fas fa-pepper-hot'},
 			{'Paleo': 'fas fa-seedling'},
 			{'Peanut-Free': 'fas fa-seedling'},
-			{'Pecatarian': 'fas fa-seedling'},
+			{'Pescatarian': 'fas fa-carrot'},
 			{'Pork-Free': 'fas fa-bacon'},
 			{'Red-Meat-Free': 'fas fa-hamburger'},
 			{'Sesame-Free': 'fas fa-seedling'},
 			{'Shellfish-Free': 'fas fa-fish'},
 			{'Soy-Free': 'fas fa-tint'},
 			{'Sugar-Conscious': 'fas fa-pepper-hot'},
+			{'Sulfite-Free': 'fas fa-tint'},
 			{'Tree-Nut-Free': 'fas fa-seedling'},
 			{'Vegan': 'fas fa-carrot'},
 			{'Vegetarian': 'fas fa-carrot'},
@@ -52,9 +57,8 @@ class HealthLabel extends React.Component {
 			<div 
 				className="healthLabel"
 				name={this.props.healthText}
-				style={{animation: `fadeIn 0.25s ease-in-out calc(350ms + (${Math.random()} * 500ms))`, animationFillMode: "both"}}
 			>
-				<i className={this.findIcon()}/><p>{this.props.healthText}</p>
+				<i className={this.findIcon()}/><p>{this.props.healthText.replace('-', ' ')}</p>
 			</div>
 		)
 	}
